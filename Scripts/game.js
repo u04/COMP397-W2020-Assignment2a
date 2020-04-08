@@ -14,10 +14,7 @@ let Game = (function () {
     }
     function Main() {
         console.log("hey!");
-        heyLable = new createjs.Text("hey", "20px Consolas", "#000000");
-        stage.addChild(heyLable);
-        heyLable.x = 320;
-        heyLable.y = 240;
+        heyLable = new objects.Lable("hey", "20px", "Consolas", "#000000", 320, 240, true);
         stage.addChild(heyLable);
     }
     window.addEventListener("load", Start);

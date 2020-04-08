@@ -1,7 +1,7 @@
 let Game = (function(){
     let canvas:HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     let stage:createjs.Stage;
-    let heyLable: createjs.Text;
+    let heyLable: objects.Lable;
     function Start():void
     {
         stage = new createjs.Stage(canvas);
@@ -16,10 +16,7 @@ let Game = (function(){
     function Main():void
     {
         console.log("hey!");
-        heyLable = new createjs.Text("hey", "20px Consolas", "#000000");
-        stage.addChild(heyLable);
-        heyLable.x = 320;
-        heyLable.y = 240;
+        heyLable = new objects.Lable("hey", "20px", "Consolas", "#000000", 320, 240, true);
         stage.addChild(heyLable);   
     }
     window.addEventListener("load", Start)
