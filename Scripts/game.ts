@@ -1,9 +1,9 @@
-(function(){
-    let canvas = document.getElementById("canvas");
+let Game = (function(){
+    let canvas:HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     let stage:createjs.Stage;
+    let heyLable: createjs.Text;
     function Start():void
     {
-        console.log("chsai");
         stage = new createjs.Stage(canvas);
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", Update);
@@ -15,7 +15,12 @@
     }
     function Main():void
     {
-        console.log("go to main");
+        console.log("hey!");
+        heyLable = new createjs.Text("hey", "20px Consolas", "#000000");
+        stage.addChild(heyLable);
+        heyLable.x = 320;
+        heyLable.y = 240;
+        stage.addChild(heyLable);   
     }
     window.addEventListener("load", Start)
 
