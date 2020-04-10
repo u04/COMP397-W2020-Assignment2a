@@ -64,7 +64,10 @@ module objects
         }
 
         // CONSTRUCTOR
-        constructor(x: number = 0, y:number = 0, displayObject?: createjs.DisplayObject)
+        constructor(x?: number, y?: number, displayObject?: createjs.DisplayObject)
+        constructor(coordinates: number[])
+        constructor(vector: Vector2)
+        constructor(first: number[] | Vector2 | number = 0, second: number = 0, third?: createjs.DisplayObject)
         {
             // Initialize member variables
             this._x = 0;
@@ -72,14 +75,32 @@ module objects
             this._magnitude = 0;
             this._sqrMagnitude = 0;
 
-            if (displayObject != undefined)
+            if (third != undefined)
             {
-                this._displayObject = displayObject;
+                this._displayObject = third;
             }
 
-            // set x and y
-            this.x = x;
-            this.y = y;
+            if(typeof first == "number")
+            {
+                // set x and y
+                this.x = first;
+                this.y = second;
+            }
+
+            if(first instanceof Array)
+            {
+                // set x and y
+                this.x = first[0];
+                this.y = first[1];
+            }
+
+            if(first instanceof Vector2)
+            {
+                // set x and y
+                this.x = first.x;
+                this.y = first.y;
+            }
+            
         }
 
         // PRIVATE METHODS
@@ -116,6 +137,11 @@ module objects
         public toString():string
         {
             return "(" + this.x + ", " + this.y + ")";
+        }
+
+        public toArray():number[]
+        {
+            return [this.x, this.y];
         }
 
         /**
@@ -193,6 +219,20 @@ module objects
             let diffXs = P2.x - P1.x;
             let diffYs = P2.y - P1.y;
             return (diffXs * diffXs) + (diffYs * diffYs);
+        }
+
+        public static add(lhs:Vector2, rhs:Vector2):Vector2
+        {
+            let theXs = lhs.x + rhs.x;
+            let theYs = lhs.y + rhs.y;
+            return new Vector2(theXs, theYs);
+        }
+
+        public static subtract(lhs:Vector2, rhs:Vector2):Vector2
+        {
+            let theXs = lhs.x - rhs.x;
+            let theYs = lhs.y - rhs.y;
+            return new Vector2(theXs, theYs);
         }
 
 

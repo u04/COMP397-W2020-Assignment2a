@@ -8,6 +8,7 @@ module objects
         private _halfWidth:number;
         private _halfHeight:number;
         private _position:Vector2;
+        private _velocity:Vector2;
         private _isColliding:boolean;
         private _isCentered:boolean;
         
@@ -56,6 +57,16 @@ module objects
             this.y = newPosition.y;
         }
 
+        get velocity():Vector2
+        {
+            return this._velocity;
+        }
+
+        set velocity(newVelocity:Vector2)
+        {
+            this._velocity = newVelocity;
+        }
+
         get isColliding():boolean
         {
             return this._isColliding;
@@ -82,10 +93,12 @@ module objects
 
 
         // CONSTRUCTOR
-        constructor(imageString:string = "./Assets/images/placeholder.png", 
-        x:number = 0, y:number = 0, centered:boolean = false)
+        constructor(imageString?: Object, x?: number, y?: number, centered?: boolean)
+        constructor(imageString: Object, position: Vector2, centered?:boolean)
+        constructor(first:Object = config.Game.ASSETS.getResult("placeholder"), 
+        second:Vector2 | number = 0, third: boolean | number = 0, fourth: boolean = false)
         {
-            super(imageString);
+            super(first);
 
             // initialization
             this._width = 0;
@@ -93,19 +106,37 @@ module objects
             this._halfWidth = 0;
             this._halfHeight = 0;
             this._position = new Vector2(0, 0, this);
+            this._velocity = new Vector2(0, 0);
             this._isColliding = false;
             this._isCentered = false;
+            
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
 
-            this.image.addEventListener("load", () => {
+            if(typeof third == "boolean")
+            {
+                this.isCentered = third;
+            }
 
-                this.width = this.getBounds().width;
-                this.height = this.getBounds().height;
+            if(typeof third == "undefined")
+            {
+                this.isCentered = false;
+            }
 
-                this.isCentered = centered;
-            });
+            if(fourth)
+            {
+                this.isCentered = fourth;
+            }
+            
+            if((typeof second == "number") && (typeof third == "number"))
+            {
+                this.position = new Vector2(second, third, this);
+            }
 
-            this.position = new Vector2(x, y, this);
-
+            if(second instanceof Vector2)
+            {
+                this.position = second;
+            }
         }
 
         // PRIVATE METHODS

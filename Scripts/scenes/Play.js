@@ -20,28 +20,39 @@ var scenes;
         // CONSTRUCTOR
         function Play() {
             var _this = _super.call(this) || this;
-            // initialization
-            _this.playLabel = new objects.Label();
-            _this.nextButton = new objects.Button();
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
         // PUBLIC METHODS
+        //initialize and instatiate
         Play.prototype.Start = function () {
-            //instantiate a new Text object
-            this.playLabel = new objects.Label("Play Scene", "80px", "Consolas", "#000000", 320, 180, true);
-            // buttons
-            this.nextButton = new objects.Button('./Assets/images/nextButton.png', 320, 430, true);
+            this._ocean = new objects.Ocean();
+            this._plane = new objects.Plane();
+            this._island = new objects.Island();
+            this._cloudNumber = config.Game.CLOUD_NUM;
+            this._clouds = new Array();
+            // create an array of cloud objects
+            for (var index = 0; index < this._cloudNumber; index++) {
+                this._clouds[index] = new objects.Cloud();
+            }
             this.Main();
         };
         Play.prototype.Update = function () {
+            this._ocean.Update();
+            this._island.Update();
+            this._plane.Update();
+            this._clouds.forEach(function (cloud) {
+                cloud.Update();
+            });
         };
         Play.prototype.Main = function () {
-            this.addChild(this.playLabel);
-            this.addChild(this.nextButton);
-            this.nextButton.on("click", function () {
-                config.Game.SCENE = scenes.State.END;
+            var _this = this;
+            this.addChild(this._ocean);
+            this.addChild(this._island);
+            this.addChild(this._plane);
+            this._clouds.forEach(function (cloud) {
+                _this.addChild(cloud);
             });
         };
         return Play;

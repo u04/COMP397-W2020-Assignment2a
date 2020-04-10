@@ -3,8 +3,12 @@ module scenes
     export class Play extends objects.Scene
     {
         // PRIVATE INSTANCE MEMBERS
-        playLabel: objects.Label;
-        nextButton: objects.Button;
+        private _ocean?: objects.Ocean;
+        private _plane?: objects.Plane;
+        private _island?: objects.Island;
+
+        private _cloudNumber:number;
+        private _clouds?: objects.Cloud[];
 
         // PUBLIC PROPERTIES
 
@@ -13,42 +17,59 @@ module scenes
         {
             super();
 
-            // initialization
-            this.playLabel = new objects.Label();
-            this.nextButton = new objects.Button();
-
             this.Start();
         }
 
         // PRIVATE METHODS
 
         // PUBLIC METHODS
+
+        //initialize and instatiate
         public Start(): void 
         {
-             //instantiate a new Text object
-            this.playLabel = new objects.Label("Play Scene", "80px", "Consolas", "#000000", 320, 180, true);
-            // buttons
-             this.nextButton = new objects.Button('./Assets/images/nextButton.png', 320, 430, true);
-            this.Main();
+            
+            this._ocean = new objects.Ocean();
+            this._plane = new objects.Plane();
+            this._island = new objects.Island();
+
+            this._cloudNumber = config.Game.CLOUD_NUM;
+            this._clouds = new Array<objects.Cloud>();
+            
+            // create an array of cloud objects
+            for (let index = 0; index < this._cloudNumber; index++) 
+            {
+                this._clouds[index] = new objects.Cloud();             
+            }
+            
+             this.Main();
         }        
         
         public Update(): void 
         {
-           
+           this._ocean.Update();
+
+           this._island.Update();
+
+           this._plane.Update();
+
+           this._clouds.forEach(cloud => {
+               cloud.Update();
+           });
+
         }
         
         public Main(): void 
         {
-       
-            this.addChild(this.playLabel);
+            this.addChild(this._ocean);
 
-        
-            this.addChild(this.nextButton);
+            this.addChild(this._island);
 
-            this.nextButton.on("click", ()=>{
-                config.Game.SCENE = scenes.State.END;
+            this.addChild(this._plane);
+
+            this._clouds.forEach(cloud => {
+                this.addChild(cloud);
             });
-
+           
         }
 
         
