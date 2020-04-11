@@ -10,6 +10,7 @@ module scenes
         private _tireNumber:number;
         private _tires?: objects.Tire[];
 
+        private _scoreboard: managers.Scoreboard;
         
        
 
@@ -44,7 +45,8 @@ module scenes
             {
                 this._tires[index] = new objects.Tire();             
             }
-            
+            this._scoreboard =new managers.Scoreboard();
+            config.Game.SCORE_BOARD = this._scoreboard;
              this.Main();
         }        
         
@@ -77,6 +79,9 @@ module scenes
             this._tires.forEach(tire => {
                 this.addChild(tire);
             });
+
+            this.addChild(this._scoreboard.livesLable);
+            this.addChild(this._scoreboard.scoreLable);
 
  
            

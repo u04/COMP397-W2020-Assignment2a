@@ -7,6 +7,9 @@ module config
         public static SCENE: scenes.State;
         public static ASSETS: createjs.LoadQueue;
         public static FPS: number = 60; // 60 Frames per second
-        public static TIRE_NUM: number = 3;
+        public static TIRE_NUM: number = 2;
+        public static LIVES: Number = 2;
+        public static SCORE: number = 0;
+        public static SCORE_BOARD : managers.Scoreboard;
     }
 }

@@ -36,6 +36,8 @@ var scenes;
             for (var index = 0; index < this._tireNumber; index++) {
                 this._tires[index] = new objects.Tire();
             }
+            this._scoreboard = new managers.Scoreboard();
+            config.Game.SCORE_BOARD = this._scoreboard;
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -57,6 +59,8 @@ var scenes;
             this._tires.forEach(function (tire) {
                 _this.addChild(tire);
             });
+            this.addChild(this._scoreboard.livesLable);
+            this.addChild(this._scoreboard.scoreLable);
         };
         return Play;
     }(objects.Scene));

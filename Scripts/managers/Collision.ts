@@ -9,17 +9,24 @@ module managers
 
             if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
                 if (!object2.isColliding) {
-                    // switch (object2.type) {
+                    switch (object2.type) {
                     //     case enums.GameObjectType.TIRE:
                     //         console.log("hit tire");
                     //         break;
                     //     case enums.GameObjectType.FOOD:
                     //         console.log("hit food");
                     //         break;
-                    // }
+
+                    // case enums.GameObjectType.FOOD:
+                    // config.Game.SCORE_BOARD.Score += 100;
+                    // break;
+                    // case enums.GameObjectType.TIRE:
+                    // config.Game.SCORE_BOARD.Lives -= 91;
+                    // break;
+                    //  }
                     // object2.isColliding = true;
                     // return true;
-                }
+                }}
             }
             else
             {
@@ -48,10 +55,16 @@ module managers
                         case enums.GameObjectType.TIRE:
                             console.log("hit tire");
                             createjs.Sound.play("hurt");
+                            config.Game.SCORE_BOARD.Lives = -1;
+                            if(config.Game.LIVES < 1)
+                            {
+                                config.Game.SCENE = scenes.State.END;
+                            }
                             break;
                         case enums.GameObjectType.FOOD:
                             console.log("hit food");
                             createjs.Sound.play("eat");
+                            config.Game.SCORE_BOARD.Score += 100;
                             break;
                     }
                     object2.isColliding = true;

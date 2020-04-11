@@ -7,7 +7,9 @@ var config;
         Game.SCREEN_WIDTH = 640;
         Game.SCREEN_HEIGHT = 480;
         Game.FPS = 60; // 60 Frames per second
-        Game.TIRE_NUM = 3;
+        Game.TIRE_NUM = 2;
+        Game.LIVES = 2;
+        Game.SCORE = 0;
         return Game;
     }());
     config.Game = Game;
