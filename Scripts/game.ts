@@ -22,6 +22,9 @@ let Game = (function(){
         {id:"plane", src:"./Assets/images/plane.png"},
         {id:"bug", src:"./Assets/images/bug.png"},
         {id:"food", src:"./Assets/images/food.png"},
+        {id:"tire", src:"./Assets/images/tire.png"},
+        {id:"eat", src:"./Assets/audio/eat.ogg"},
+        {id:"hurt", src:"./Assets/audio/hurt.ogg"},
         {id:"cloud", src:"./Assets/images/cloud.png"}
     ];
 

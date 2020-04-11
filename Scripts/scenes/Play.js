@@ -30,20 +30,33 @@ var scenes;
             this._ocean = new objects.Ocean();
             this._bug = new objects.Bug();
             this._food = new objects.Food();
-            this._cloudNumber = config.Game.CLOUD_NUM;
-            this._clouds = new Array();
+            this._tireNumber = config.Game.TIRE_NUM;
+            this._tires = new Array();
             // create an array of cloud objects
+            for (var index = 0; index < this._tireNumber; index++) {
+                this._tires[index] = new objects.Tire();
+            }
             this.Main();
         };
         Play.prototype.Update = function () {
+            var _this = this;
             this._ocean.Update();
             this._food.Update();
             this._bug.Update();
+            managers.Collision.AABBCheck(this._bug, this._food);
+            this._tires.forEach(function (tire) {
+                tire.Update();
+                managers.Collision.AABBCheck(_this._bug, tire);
+            });
         };
         Play.prototype.Main = function () {
+            var _this = this;
             this.addChild(this._ocean);
             this.addChild(this._food);
             this.addChild(this._bug);
+            this._tires.forEach(function (tire) {
+                _this.addChild(tire);
+            });
         };
         return Play;
     }(objects.Scene));

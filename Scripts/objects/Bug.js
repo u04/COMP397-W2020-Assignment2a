@@ -40,6 +40,7 @@ var objects;
         };
         // PUBLIC METHODS
         Bug.prototype.Start = function () {
+            this.type = enums.GameObjectType.BUG;
             this._verticalPosition = 430; // locked to the bottom of the screen
         };
         Bug.prototype.Update = function () {

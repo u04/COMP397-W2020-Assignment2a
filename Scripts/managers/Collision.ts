@@ -7,14 +7,19 @@ module managers
             // squared radius check
             let radii = object1.halfHeight + object2.halfHeight;
 
-            if(objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii))
-            {
-                if(!object2.isColliding)
-                    {
-                        console.log("Collision!");
-                        object2.isColliding = true;
-                        return true;
-                    }
+            if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
+                if (!object2.isColliding) {
+                    // switch (object2.type) {
+                    //     case enums.GameObjectType.TIRE:
+                    //         console.log("hit tire");
+                    //         break;
+                    //     case enums.GameObjectType.FOOD:
+                    //         console.log("hit food");
+                    //         break;
+                    // }
+                    // object2.isColliding = true;
+                    // return true;
+                }
             }
             else
             {
@@ -39,7 +44,16 @@ module managers
             {
                 if(!object2.isColliding)
                 {
-                    console.log("Collision!");
+                    switch (object2.type) {
+                        case enums.GameObjectType.TIRE:
+                            console.log("hit tire");
+                            createjs.Sound.play("hurt");
+                            break;
+                        case enums.GameObjectType.FOOD:
+                            console.log("hit food");
+                            createjs.Sound.play("eat");
+                            break;
+                    }
                     object2.isColliding = true;
                     return true;
                 }

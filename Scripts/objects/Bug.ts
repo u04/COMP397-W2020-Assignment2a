@@ -41,7 +41,9 @@ module objects
         // PUBLIC METHODS
         public Start(): void 
         {
+            this.type = enums.GameObjectType.BUG;
             this._verticalPosition = 430; // locked to the bottom of the screen
+            
         }
 
         public Update(): void 

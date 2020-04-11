@@ -38,6 +38,7 @@ module objects
          */
         public Start(): void {
             this.name = "Button";
+            this.type = enums.GameObjectType.BUTTON;
         }
 
         public Update(): void {
