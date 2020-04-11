@@ -32,7 +32,7 @@ var scenes;
             this._food = new objects.Food();
             this._tireNumber = config.Game.TIRE_NUM;
             this._tires = new Array();
-            // create an array of cloud objects
+            // create an array of tire objects
             for (var index = 0; index < this._tireNumber; index++) {
                 this._tires[index] = new objects.Tire();
             }

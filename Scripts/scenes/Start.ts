@@ -5,6 +5,7 @@ module scenes
         // PRIVATE INSTANCE MEMBERS
         private _welcomeLabel: objects.Label;
         private _startButton: objects.Button;
+        private _insButton: objects.Button;
         private _ocean: objects.Ocean;
 
         // PUBLIC PROPERTIES
@@ -26,7 +27,7 @@ module scenes
             this._welcomeLabel = new objects.Label("The Game", "80px", "Consolas", "#FFFF00", 320, 180, true);
             // buttons
              this._startButton = new objects.Button(config.Game.ASSETS.getResult("startButton"), 320, 430, true);
-
+             this._insButton = new objects.Button(config.Game.ASSETS.getResult("insButton"), 320, 330, true);
              this._ocean = new objects.Ocean();
             this.Main();
         }        
@@ -44,9 +45,14 @@ module scenes
 
         
             this.addChild(this._startButton);
+            this.addChild(this._insButton);
 
             this._startButton.on("click", ()=>{
                 config.Game.SCENE = scenes.State.PLAY;
+            });
+
+            this._insButton.on("click", ()=>{
+                config.Game.SCENE = scenes.State.INS;
             });
 
         }

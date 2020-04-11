@@ -14,6 +14,7 @@ var Game = (function () {
         { id: "startButton", src: "./Assets/images/startButton.png" },
         { id: "nextButton", src: "./Assets/images/nextButton.png" },
         { id: "backButton", src: "./Assets/images/backButton.png" },
+        { id: "insButton", src: "./Assets/images/insButton.png" },
         { id: "ocean", src: "./Assets/images/ocean.gif" },
         { id: "plane", src: "./Assets/images/plane.png" },
         { id: "bug", src: "./Assets/images/bug.png" },
@@ -70,6 +71,10 @@ var Game = (function () {
             case scenes.State.START:
                 console.log("switch to Start Scene");
                 currentScene = new scenes.Start();
+                break;
+            case scenes.State.INS:
+                console.log("switch to INS Scene");
+                currentScene = new scenes.Ins();
                 break;
             case scenes.State.PLAY:
                 console.log("switch to Play Scene");

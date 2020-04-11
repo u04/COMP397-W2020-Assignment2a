@@ -38,12 +38,13 @@ module scenes
             this._tireNumber = config.Game.TIRE_NUM;
             this._tires = new Array<objects.Tire>();
             
-            // create an array of cloud objects
+            // create an array of tire objects
         
             for (let index = 0; index < this._tireNumber; index++) 
             {
                 this._tires[index] = new objects.Tire();             
             }
+            
              this.Main();
         }        
         
