@@ -14,17 +14,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Plane = /** @class */ (function (_super) {
-        __extends(Plane, _super);
+    var Bug = /** @class */ (function (_super) {
+        __extends(Bug, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTOR
-        function Plane() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("plane"), 0, 0, true) || this;
+        function Bug() {
+            var _this = _super.call(this, config.Game.ASSETS.getResult("bug"), 0, 0, true) || this;
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
-        Plane.prototype._checkBounds = function () {
+        Bug.prototype._checkBounds = function () {
             // left boundary
             if (this.position.x <= this.halfWidth) {
                 this.position = new objects.Vector2(this.halfWidth, this.position.y);
@@ -34,22 +34,22 @@ var objects;
                 this.position = new objects.Vector2(config.Game.SCREEN_WIDTH - this.halfWidth, this.position.y);
             }
         };
-        Plane.prototype._move = function () {
+        Bug.prototype._move = function () {
             var newPositionX = util.Mathf.Lerp(this.position.x, this.stage.mouseX, 0.05);
             this.position = new objects.Vector2(newPositionX, this._verticalPosition);
         };
         // PUBLIC METHODS
-        Plane.prototype.Start = function () {
+        Bug.prototype.Start = function () {
             this._verticalPosition = 430; // locked to the bottom of the screen
         };
-        Plane.prototype.Update = function () {
+        Bug.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Plane.prototype.Reset = function () {
+        Bug.prototype.Reset = function () {
         };
-        return Plane;
+        return Bug;
     }(objects.GameObject));
-    objects.Plane = Plane;
+    objects.Bug = Bug;
 })(objects || (objects = {}));
-//# sourceMappingURL=plane.js.map
+//# sourceMappingURL=Bug.js.map

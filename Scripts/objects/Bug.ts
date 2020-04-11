@@ -1,6 +1,6 @@
 module objects
 {
-    export class Plane extends GameObject
+    export class Bug extends GameObject
     {
         // PRIVATE INSTANCE MEMBERS
         private _verticalPosition:number;
@@ -10,7 +10,7 @@ module objects
         // CONSTRUCTOR
         constructor()
         {
-            super(config.Game.ASSETS.getResult("plane"), 0, 0, true);
+            super(config.Game.ASSETS.getResult("bug"), 0, 0, true);
 
             this.Start();
         }

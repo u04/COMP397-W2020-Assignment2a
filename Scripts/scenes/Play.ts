@@ -4,8 +4,8 @@ module scenes
     {
         // PRIVATE INSTANCE MEMBERS
         private _ocean?: objects.Ocean;
-        private _plane?: objects.Plane;
-        private _island?: objects.Island;
+        private _bug?: objects.Bug;
+        private _food?: objects.Food;
 
         private _cloudNumber:number;
         private _clouds?: objects.Cloud[];
@@ -29,18 +29,14 @@ module scenes
         {
             
             this._ocean = new objects.Ocean();
-            this._plane = new objects.Plane();
-            this._island = new objects.Island();
+            this._bug = new objects.Bug();
+            this._food = new objects.Food();
 
             this._cloudNumber = config.Game.CLOUD_NUM;
             this._clouds = new Array<objects.Cloud>();
             
             // create an array of cloud objects
-            for (let index = 0; index < this._cloudNumber; index++) 
-            {
-                this._clouds[index] = new objects.Cloud();             
-            }
-            
+        
              this.Main();
         }        
         
@@ -48,13 +44,11 @@ module scenes
         {
            this._ocean.Update();
 
-           this._island.Update();
+           this._food.Update();
 
-           this._plane.Update();
+           this._bug.Update();
 
-           this._clouds.forEach(cloud => {
-               cloud.Update();
-           });
+
 
         }
         
@@ -62,13 +56,11 @@ module scenes
         {
             this.addChild(this._ocean);
 
-            this.addChild(this._island);
+            this.addChild(this._food);
 
-            this.addChild(this._plane);
+            this.addChild(this._bug);
 
-            this._clouds.forEach(cloud => {
-                this.addChild(cloud);
-            });
+ 
            
         }
 

@@ -28,32 +28,22 @@ var scenes;
         //initialize and instatiate
         Play.prototype.Start = function () {
             this._ocean = new objects.Ocean();
-            this._plane = new objects.Plane();
-            this._island = new objects.Island();
+            this._bug = new objects.Bug();
+            this._food = new objects.Food();
             this._cloudNumber = config.Game.CLOUD_NUM;
             this._clouds = new Array();
             // create an array of cloud objects
-            for (var index = 0; index < this._cloudNumber; index++) {
-                this._clouds[index] = new objects.Cloud();
-            }
             this.Main();
         };
         Play.prototype.Update = function () {
             this._ocean.Update();
-            this._island.Update();
-            this._plane.Update();
-            this._clouds.forEach(function (cloud) {
-                cloud.Update();
-            });
+            this._food.Update();
+            this._bug.Update();
         };
         Play.prototype.Main = function () {
-            var _this = this;
             this.addChild(this._ocean);
-            this.addChild(this._island);
-            this.addChild(this._plane);
-            this._clouds.forEach(function (cloud) {
-                _this.addChild(cloud);
-            });
+            this.addChild(this._food);
+            this.addChild(this._bug);
         };
         return Play;
     }(objects.Scene));

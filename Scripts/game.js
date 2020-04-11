@@ -16,7 +16,8 @@ var Game = (function () {
         { id: "backButton", src: "./Assets/images/backButton.png" },
         { id: "ocean", src: "./Assets/images/ocean.gif" },
         { id: "plane", src: "./Assets/images/plane.png" },
-        { id: "island", src: "./Assets/images/island.png" },
+        { id: "bug", src: "./Assets/images/bug.png" },
+        { id: "food", src: "./Assets/images/food.png" },
         { id: "cloud", src: "./Assets/images/cloud.png" }
     ];
     function Preload() {
