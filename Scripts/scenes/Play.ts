@@ -6,6 +6,7 @@ module scenes
         private _ocean?: objects.Ocean;
         private _bug?: objects.Bug;
         private _food?: objects.Food;
+        private _endButton: objects.Button;
 
         private _tireNumber:number;
         private _tires?: objects.Tire[];
@@ -38,7 +39,7 @@ module scenes
 
             this._tireNumber = config.Game.TIRE_NUM;
             this._tires = new Array<objects.Tire>();
-            
+            this._endButton = new objects.Button(config.Game.ASSETS.getResult("endButton"), 40, 430, true);
             // create an array of tire objects
         
             for (let index = 0; index < this._tireNumber; index++) 
@@ -76,6 +77,7 @@ module scenes
 
             this.addChild(this._bug);
 
+            this.addChild(this._endButton);
             this._tires.forEach(tire => {
                 this.addChild(tire);
             });
@@ -83,6 +85,9 @@ module scenes
             this.addChild(this._scoreboard.livesLable);
             this.addChild(this._scoreboard.scoreLable);
 
+            this._endButton.on("click", ()=>{
+                config.Game.SCENE = scenes.State.END;
+            });
  
            
         }

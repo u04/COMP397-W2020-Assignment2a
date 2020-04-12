@@ -22,6 +22,7 @@ var Game = (function () {
         { id: "tire", src: "./Assets/images/tire.png" },
         { id: "eat", src: "./Assets/audio/eat.ogg" },
         { id: "hurt", src: "./Assets/audio/hurt.ogg" },
+        { id: "endButton", src: "./Assets/images/endButton.png" },
         { id: "cloud", src: "./Assets/images/cloud.png" }
     ];
     function Preload() {

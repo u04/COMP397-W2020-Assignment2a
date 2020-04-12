@@ -10,22 +10,22 @@ var managers;
             if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
                 if (!object2.isColliding) {
                     switch (object2.type) {
-                        //     case enums.GameObjectType.TIRE:
-                        //         console.log("hit tire");
-                        //         break;
-                        //     case enums.GameObjectType.FOOD:
-                        //         console.log("hit food");
-                        //         break;
-                        // case enums.GameObjectType.FOOD:
-                        // config.Game.SCORE_BOARD.Score += 100;
-                        // break;
-                        // case enums.GameObjectType.TIRE:
-                        // config.Game.SCORE_BOARD.Lives -= 91;
-                        // break;
-                        //  }
-                        // object2.isColliding = true;
-                        // return true;
+                        case enums.GameObjectType.TIRE:
+                            {
+                                createjs.Sound.play("hurt");
+                                config.Game.SCORE_BOARD.Lives -= 2;
+                                if (config.Game.LIVES < 1) {
+                                    config.Game.SCENE = scenes.State.END;
+                                }
+                            }
+                            break;
+                        case enums.GameObjectType.FOOD:
+                            createjs.Sound.play("eat");
+                            config.Game.SCORE_BOARD.Score += 100;
+                            break;
                     }
+                    object2.isColliding = true;
+                    return true;
                 }
             }
             else {
@@ -38,6 +38,8 @@ var managers;
             var object2Offset = (!object2.isCentered) ? new objects.Vector2(0, 0) : new objects.Vector2(object2.halfWidth, object2.halfHeight);
             var object1TopLeft = new objects.Vector2(object1.position.x - object1Offset.x, object1.position.y - object1Offset.y);
             var object2TopLeft = new objects.Vector2(object2.position.x - object2Offset.x, object2.position.y - object2Offset.y);
+            var foodCounter = 0;
+            var lifeCounter = 2;
             // AABB Collision Detection
             if (object1TopLeft.x < object2TopLeft.x + object2.width &&
                 object1TopLeft.x + object1.width > object2TopLeft.x &&
@@ -45,18 +47,19 @@ var managers;
                 object1TopLeft.y + object1.height > object2TopLeft.y) {
                 if (!object2.isColliding) {
                     switch (object2.type) {
+                        case enums.GameObjectType.FOOD:
+                            createjs.Sound.play("eat");
+                            config.Game.SCORE_BOARD.Score += 100;
+                            if (config.Game.SCORE > config.Game.HIGH_SCORE) {
+                                config.Game.HIGH_SCORE = config.Game.SCORE;
+                            }
+                            break;
                         case enums.GameObjectType.TIRE:
-                            console.log("hit tire");
                             createjs.Sound.play("hurt");
-                            config.Game.SCORE_BOARD.Lives = -1;
+                            config.Game.SCORE_BOARD.Lives -= 1;
                             if (config.Game.LIVES < 1) {
                                 config.Game.SCENE = scenes.State.END;
                             }
-                            break;
-                        case enums.GameObjectType.FOOD:
-                            console.log("hit food");
-                            createjs.Sound.play("eat");
-                            config.Game.SCORE_BOARD.Score += 100;
                             break;
                     }
                     object2.isColliding = true;

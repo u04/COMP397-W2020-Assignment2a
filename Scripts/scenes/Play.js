@@ -32,6 +32,7 @@ var scenes;
             this._food = new objects.Food();
             this._tireNumber = config.Game.TIRE_NUM;
             this._tires = new Array();
+            this._endButton = new objects.Button(config.Game.ASSETS.getResult("endButton"), 40, 430, true);
             // create an array of tire objects
             for (var index = 0; index < this._tireNumber; index++) {
                 this._tires[index] = new objects.Tire();
@@ -56,11 +57,15 @@ var scenes;
             this.addChild(this._ocean);
             this.addChild(this._food);
             this.addChild(this._bug);
+            this.addChild(this._endButton);
             this._tires.forEach(function (tire) {
                 _this.addChild(tire);
             });
             this.addChild(this._scoreboard.livesLable);
             this.addChild(this._scoreboard.scoreLable);
+            this._endButton.on("click", function () {
+                config.Game.SCENE = scenes.State.END;
+            });
         };
         return Play;
     }(objects.Scene));

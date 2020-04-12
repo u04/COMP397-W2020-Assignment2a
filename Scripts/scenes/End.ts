@@ -5,6 +5,8 @@ module scenes {
         private _backButton: objects.Button;
         private _ocean: objects.Ocean;
 
+        private _scoreBoard: managers.Scoreboard;
+
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -21,11 +23,13 @@ module scenes {
         // Initializing and Instantiating
         public Start(): void {
             //instantiate a new Text object
-            this._endLabel = new objects.Label("End Scene", "80px", "Consolas", "#FFFF00", 320, 180, true);
+            this._endLabel = new objects.Label("The End", "80px", "Consolas", "#FFFF00", 320, 180, true);
             // buttons
             this._backButton = new objects.Button(config.Game.ASSETS.getResult("backButton"), 320, 430, true);
 
             this._ocean = new objects.Ocean();
+            this._scoreBoard = new managers.Scoreboard();
+            this._scoreBoard.HighScore = config.Game.HIGH_SCORE;
             this.Main();
         }
 
@@ -42,8 +46,12 @@ module scenes {
             this.addChild(this._backButton);
 
             this._backButton.on("click", () => {
+                config.Game.LIVES = 2;
+                config.Game.SCORE = 0;
                 config.Game.SCENE = scenes.State.PLAY;
             });
+
+            this.addChild(this._scoreBoard.highScoreLabel);
 
         }
 

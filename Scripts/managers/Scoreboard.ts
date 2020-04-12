@@ -7,26 +7,64 @@ module managers
         private _score : number;
         private _livesLable : objects.Label;
         private _scoreLable : objects.Label;
-        Lives: Number;
-        Score: number;
 
 
-        public get lives() : number {
+        public get Lives() : number 
+        {
             return this._lives;
         }
-        public set lives(v : number) {
+
+        public set Lives(v : number) 
+        {
             this._lives = v;
             config.Game.LIVES = this._lives;
             this.livesLable.text = "Lives: " + this._lives;
+            console.log("lives noted from Scoreboard.ts")
         }
-        public get score() : number {
+
+        public get Score() : number 
+        {
             return this._score;
         }
-        public set score(v : number) {
+       
+        public set Score(v : number)
+         {
             this._score = v;
             config.Game.SCORE = this._score;
             this.scoreLable.text = "Score: " + this._score;
+            console.log("score noted from Scoreboard.ts")
         }
+        
+
+        private _highScore : number;
+        public get HighScore() : number 
+        {
+            return this._highScore;
+        }
+        
+        public set HighScore(v : number) 
+        {
+            this._highScore = v;
+            config.Game.HIGH_SCORE = this._highScore;
+            this.highScoreLabel.setText("high score: " + this._highScore);
+        }
+        
+        private _highScoreLabel : objects.Label;
+        
+        public get highScoreLabel() : objects.Label 
+        {
+            return this._highScoreLabel;
+        }
+        
+        public set highScoreLabel(v : objects.Label) 
+        {
+            this._highScoreLabel = v;
+        }
+        
+
+
+        
+        
         
         
 
@@ -54,8 +92,10 @@ module managers
         {
             this._livesLable = new objects.Label("Lives: 9", "20px", "Consolas", "#FFFF00", 20, 20);
             this._scoreLable = new objects.Label("Score: 9", "20px", "Consolas", "#FFFF00", 490, 20);
+            this._highScoreLabel = new objects.Label("high score: 9999", "20px", "Consolas", "#FFFF00", 320, 290);
             this.Lives = config.Game.LIVES;
             this.Score = config.Game.SCORE;
+            this.HighScore = config.Game.HIGH_SCORE;
         }
         
         

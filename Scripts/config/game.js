@@ -10,6 +10,7 @@ var config;
         Game.TIRE_NUM = 2;
         Game.LIVES = 2;
         Game.SCORE = 0;
+        Game.HIGH_SCORE = 0;
         return Game;
     }());
     config.Game = Game;
